@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class paymentController extends Controller
 {
-    public function index(){
-        return view('user.payments.index');
+    public function index(Request $request){
+        $card_id = Request('card_id');
+        $card = Package::where('id', $card_id)->first();
+        return view('user.payments.index', compact('card'));
     }
 }

@@ -15,7 +15,6 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->morphs('Admin');
             $table->morphs('user');
             $table->decimal('belance')->default(0);
             $table->decimal('total_amount')->default(0);

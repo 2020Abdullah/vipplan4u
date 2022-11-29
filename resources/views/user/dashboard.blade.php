@@ -5,38 +5,14 @@
 @endsection
 
 @section('header')
-<x-navbar-2 />
+  @include('user.layout.header')
+@endsection
+
+@section('sidebar')
+  @include('user.layout.sidebar')
 @endsection
 
 @section('content')
-<div class="container-fluid page-body-wrapper pt-0">
-    <!-- sidebar -->
-      <!-- partial:partials/_sidebar.html -->
-  <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-      <li class="nav-item nav-profile">
-        <a href="#" class="nav-link">
-          <div class="nav-profile-text d-flex flex-column">
-            <span class="font-weight-bold mb-2">{{ auth()->user()->name }}</span>
-          </div>
-          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-        </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{{url('/')}}">
-          <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">إحصائيات</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('package.index') }}">
-          <i class="mdi mdi-card" aria-hidden="true"></i>
-          <span class="menu-title">الباقات</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-    <!-- End sidebar -->
     <!-- main-panel -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -98,6 +74,4 @@
         <!-- End footer -->
     </div>
     <!-- main-panel ends -->
-</div>
-
 @endsection

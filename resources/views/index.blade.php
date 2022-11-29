@@ -115,8 +115,13 @@
                                                     @endif
                                                     <li><a href="#" onclick="event.preventDefault()">نسبة الربح {{($card->card_earn_num * $card->card_expire) / $card->card_Rate * 100 }} $ اسبوعياً</a></li>
                                                 </ul>
-                                                <a class="btn btn-plus" href="{{route('payment.index', 'true')}}"><i class="fa fa-plus"></i></a>
-                                                <a class="btn btn-white" href="{{route('payment.index', 'true')}}">اشترى الآن</a>
+                                                <form method="POST" action="{{ route('payment.index') }}">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <input type="hidden" name="card_id" value="{{ $card->id }}">
+                                                    <a class="btn btn-plus" href="#"><i class="fa fa-plus"></i></a>
+                                                    <input class="btn btn-white" type="submit" value="اشترى الآن">
+                                                </form>
                                             </div>
                                         </div>
                                     @endforeach

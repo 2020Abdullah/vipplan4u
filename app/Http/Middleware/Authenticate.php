@@ -19,7 +19,7 @@ class Authenticate extends Middleware
            if(Request::is('dashboard*')){
                 return route('user.login');
            }
-           if(Request::is('payment')){
+           if(Request::is('payment*')){
                 return route('user.login');
            }
            if(Request::is('admin*')){

@@ -39,23 +39,23 @@ Route::group(['middleware' => ['guest']], function(){
 });
 
 Route::group(['middleware' => ['auth']], function(){
-    
-    // users Routes
-
-    Route::get('dashboard', [HomeController::class, 'user'])->name('user.dashboard');
-
-    // admin Routes
-
-    Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
-    
-    Route::resource('admin/package', PackageController::class);
-
-    Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
-    
-    Route::get('/payment', [paymentController::class, 'index'])->name('payment.index');
-
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
+    Route::post('/payment', [paymentController::class, 'index'])->name('payment.index');
 });
+
+// users Routes
+
+Route::get('dashboard', [HomeController::class, 'user'])->name('user.dashboard');
+
+
+// admin Routes
+
+Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
+
+Route::resource('admin/package', PackageController::class);
+
+Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
+
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 
 
