@@ -21,5 +21,12 @@
           <span class="menu-title">الباقات</span>
         </a>
       </li>
+
+        <li class="nav-item active">
+        <a class="nav-link" href="{{route('payment_method.index')}}">
+          <i class="mdi mdi-home menu-icon"></i>
+          <span class="menu-title">payment method</span>
+        </a>
+      </li>
     </ul>
   </nav>

@@ -71,6 +71,12 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
+            Account::create([
+                'user_type' => 'App\Models\user',
+                'user_id'   => auth()->user()->id,
+                'belance'   => 0,
+                'status'    => 'active'
+            ]);
             if(auth('web')->attempt(['email' => $request->email, 'password' => $request->password])){
                 return redirect(RouteServiceProvider::HOME);
             }

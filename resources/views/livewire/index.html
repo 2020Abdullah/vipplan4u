@@ -1,0 +1,412 @@
+<div>
+    @extends('layouts.home')
+
+    @section('styles')
+        <link href="{{ asset('assets/styles/css/style.css') }}" rel="stylesheet">
+    @endsection
+
+    @section('title')
+        شراء باقة
+    @endsection
+
+    @section('header')
+        @include('user.layout.header')
+    @endsection
+
+    @section('sidebar')
+        @include('user.layout.sidebar')
+    @endsection
+
+    @section('content')
+        <div class="main-panel">
+            <div class="content-wrapper row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-pricing-wrap text-center">
+                        <span class="animate-dots"></span>
+
+                            <span>{{$card->id}}</span>
+                        <input  type="hidden"  wire:model="package_id{{ $card->id }}"/>
+
+
+                        <div class="price">{{ $card->card_Rate }} %</div>
+                        <div class="thumb">
+                            <img src="{{ asset('assets/images/packages/01.png') }}" alt="icon">
+                        </div>
+                        <h5>{{ $card->card_name }}</h5>
+                        <ul>
+                            <li><a href="#" onclick="event.preventDefault()">الحد الأدني للإيداع
+                                    {{ $card->card_min }}</a>
+                            </li>
+                            <li><a href="#" onclick="event.preventDefault()">الحد الأقصى للإيداع
+                                    {{ $card->card_mix }}</a>
+                            </li>
+                            <li><a href="#" onclick="event.preventDefault()">عدد مرات الربح {{ $card->card_earn_num }}
+                                    مرات</a></li>
+                            @if ($card->card_expire == 7)
+                                <li><a href="#" onclick="event.preventDefault()">{{ $card->card_earn_num }} مرات</a>
+                                </li>
+                            @endif
+                            <li><a href="#" onclick="event.preventDefault()">نسبة الربح
+                                    {{ (($card->card_earn_num * $card->card_expire) / $card->card_Rate) * 100 }} $
+                                    اسبوعياً</a>
+                            </li>
+
+                            <div><a class="btn btn-danger" href="{{ url('/') }}">back</a></div>
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-8 ">
+                    <!-- @livewire('add-payment') -->
+                    <!-- {{-- <livewire:add-payment/> --}} -->
+
+                    <div>
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" type="button"
+                                        class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-success' }}">1</a>
+                                    <p>step1</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" type="button"
+                                        class="btn btn-circle {{ $currentStep != 2 ? 'btn-default' : 'btn-success' }}">2</a>
+                                    <p>step2</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" type="button"
+                                        class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-success' }}"
+                                        disabled="disabled">3</a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- {{-- @livewire('payment_methode') --}} -->
+                        @if ($currentStep != 1)
+    <div style="display: none" class=" setup-content" id="step-1">
+@endif
+
+<div class="col-xs-12 ">
+    <div class="col-md-12">
+        <br>
+
+
+        <div class="form-row">
+
+
+            <div class="container pay-ways-box active-form p-5 w-100"
+                style="background:white;padding: 40px; border-radius: 40px;margin-bottom: 40px;">
+                <!-- Start of the title -->
+                <h4 class="fs-4 fw-bold mb-3 text-center">إيداع</h4>
+                <!-- End of the title -->
+
+
+                <div class="deposit-steps d-flex flex-wrap px-2 overflow-hidden">
+                    <!-- Start of the first step -->
+                    <div id="firstStep" class="step first-step w-100 position-relative">
+                        <div class="row m-0">
+                            <!-- Pay ways title -->
+                            <h5 class="col-lg-2 p-0 mb-3 fs-5 fw-bold">طريقة الدفع</h5>
+                            <!-- Pay ways container -->
+                            <div class="col-lg-10 pay-ways p-0 d-flex align-items-center flex-wrap mb-3 ">
+                                <div class="pay-way">
+                                    <input type="radio" checked="" name="payment_method"
+                                        wire:model="payment_method" data-percent="20" data-fixed="0"
+                                        data-min_deposit="5" value="1" data-max_deposit="4006" id="payment_type_1"
+                                        class="d-none">
+                                    <label for="payment_type_1"
+                                        class="d-flex align-items-center p-2 ms-3 mb-3 border border-2 ">
+                                        <!-- Pay way img -->
+                                        <img src="https://tftwallet.com/images/payment_types/_1627753938.png"
+                                            class="d-block ms-3">
+                                        <!-- Pay way details -->
+                                        <div class="pay-way-details">
+                                            <h6 class="fs-6 fw-bold text-capitalize mb-2">
+                                                Vodafone Cash
+                                            </h6>
+                                            <span class="fs-6 text-muted">1.00 $ =&gt;
+                                                0.8 $</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="pay-way">
+                                    <input type="radio" name="payment_method" wire:model="payment_method"
+                                        data-percent="2.3" data-fixed="0" data-min_deposit="5" value="2"
+                                        data-max_deposit="4826" id="payment_type_9" class="d-none">
+                                    <label for="payment_type_9"
+                                        class="d-flex align-items-center p-2 ms-3 mb-3 border border-2 ">
+                                        <!-- Pay way img -->
+                                        <img src="https://tftwallet.com/images/payment_types/H5wNaPayeer.png"
+                                            class="d-block ms-3">
+                                        <!-- Pay way details -->
+                                        <div class="pay-way-details">
+                                            <h6 class="fs-6 fw-bold text-capitalize mb-2">
+                                                Payeer
+                                            </h6>
+                                            <span class="fs-6 text-muted">1.00 $ =&gt;
+                                                0.977 $</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="pay-way">
+                                    <input type="radio" name="payment_method" wire:model="payment_method"
+                                        data-percent="4.2" data-fixed="0" data-min_deposit="5" value="3"
+                                        data-max_deposit="3394" id="payment_type_10" class="d-none">
+                                    <label for="payment_type_10"
+                                        class="d-flex align-items-center p-2 ms-3 mb-3 border border-2 ">
+                                        <!-- Pay way img -->
+                                        <img src="https://tftwallet.com/images/payment_types/HNNzDPerfect Money (1).png"
+                                            class="d-block ms-3">
+                                        <!-- Pay way details -->
+                                        <div class="pay-way-details">
+                                            <h6 class="fs-6 fw-bold text-capitalize mb-2">
+                                                Perfect Money
+                                            </h6>
+                                            <span class="fs-6 text-muted">1.00 $ =&gt;
+                                                0.958 $</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="pay-way">
+                                    <input type="radio" name="payment_method" wire:model="payment_method"
+                                        data-percent="0" data-fixed="0" data-min_deposit="20" value="4"
+                                        data-max_deposit="4780" id="payment_type_14" class="d-none">
+                                    <label for="payment_type_14"
+                                        class="d-flex align-items-center p-2 ms-3 mb-3 border border-2 ">
+                                        <!-- Pay way img -->
+                                        <img src="https://tftwallet.com/images/payment_types/DLOU0dogecoin-logo-png-transparent.png"
+                                            class="d-block ms-3">
+                                        <!-- Pay way details -->
+                                        <div class="pay-way-details">
+                                            <h6 class="fs-6 fw-bold text-capitalize mb-2">
+                                                Dogecoin
+                                            </h6>
+                                            <span class="fs-6 text-muted">1.00 $ =&gt;
+                                                1 $</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                @error('payment_method')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Start of the amount box -->
+                            <div class="amount row p-0 mx-0 align-items-center mb-4">
+                                <!-- Amount title -->
+                                <h5 class="col-xl-2 col-12 fs-5 fw-bold mb-3 mb-xl-0 px-0">
+                                    المبلغ
+                                </h5>
+                                <div class="col row no-gutters">
+                                    <div class="col-xl-5 cols-12 mb-3 pe-0 mb-xl-0">
+                                        <!-- Amount input -->
+                                        <input type="number" min="1" name="total_deposited_amount"
+                                            wire:model="total_deposited_amount" id="amountInput"
+                                            class="form-control fs-5" step="any" placeholder="أدخل المبلغ">
+                                    </div>
+                                    @error('total_deposited_amount')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <!-- End of the cion select -->
+                            </div>
+                            <!-- End of the amount box -->
+
+
+
+                            <div class="d-flex align-items-center justify-content-end">
+                                <!-- Second step btn -->
+                                <button id="secondStepBtn" type="button"
+                                    class="btn btn-primary fs-5 lh-lg fw-bold p-1 px-5" wire:click="firstStepSubmit">
+                                    التالي »
+                                </button>
+                                <!-- End of the second step btn -->
+                            </div>
+
+                            <!-- End of the epay container -->
+                        </div>
+                    </div>
+                    <!-- End of the first step -->
+
+                    {{-- <!-- Start of the second step -->
+                        <div id="secondStep" class="step second-step w-100 position-relative d-none">
+                            <div class="row p-0 mx-0">
+                                <!-- Instructions title -->
+                                <h5 class="col-lg-2 col-12 mb-3 mb-lg-0 mb-0 fs-5 fw-bold">
+                                    التعليمات
+                                </h5>
+                                <!-- End of the instructions title -->
+
+                                <!-- Start of the instructions -->
+                                <div class="col-lg-10 col-12 instructions ps-0 mb-3">
+                                    <p class="text-end mb-2 lh-base" id="container_instructions">قم بارسال المبلغ المحدد على حساب فودافون كاش وبعد ارسال المبلغ قم بالضغط علي "التالي"</p>
+                                </div>
+                                <!-- End of the instructions -->
+                            </div>
+
+                            <div class="row p-0 mx-0 mb-3">
+                                <h5 class="col-lg-2 col-12mb-3 mb-lg-0 fs-5 fw-bold">
+                                    الحساب
+                                </h5>
+                                <p class="col-lg-4 col-12 mb-0 fs-5" id="container_account">01068082819</p>
+                                <input type="hidden" name="site_payment_account_id" id="input_site_payment_account_id" value="3">
+                            </div>
+
+                            <div class="row p-0 mx-0 mb-3">
+                                <h5 class="col-lg-2 col-12mb-3 mb-lg-0 fs-5 fw-bold">
+                                    الحساب الاحتياطي
+                                </h5>
+                                <p class="col-lg-4 col-12 mb-0 fs-5" id="container_account_alt">--</p>
+                            </div>
+
+                            <div class="row p-0 mx-0 mb-3">
+                                <h5 class="col-lg-2 col-12 mb-3 mb-lg-0 fs-5 fw-bold">
+                                    إجمالي المبلغ
+                                </h5>
+                                <div class="col-lg-4 col-12 mb-0 fs-5">
+                                    <p class="d-inline-block" id="total_amount2"></p>
+                                    <p class="d-inline-block" id="total_amount_currency"></p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-center">
+                                <!-- Second step btn -->
+                                <button id="lastStepBtn" class="btn btn-primary fs-5 lh-lg fw-bold p-1 px-5">
+                                    التالي »
+                                </button>
+                                <!-- End of the second step btn -->
+                            </div>
+                        </div>
+                        <!-- End of the second step --> --}}
+
+                </div>
+                <!-- End of the deposit steps -->
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+                    
+                        <!-- @include('livewire.payment_methode') -->
+                    
+                            <!-- @include('livewire.information') -->
+                            @if ($currentStep != 2)
+                            <div style="display: none" class="row setup-content" id="step-2">
+                        @endif
+                        <div class="col-xs-12">
+                            <div class="col-md-12">
+                                <br>
+                        
+                                <div class="form-row">
+                                    <div class="col"
+                                        style="background:white;padding: 40px; border-radius: 40px;margin-bottom: 40px;">
+                                        <h5>the information</h5>
+                                        <span>lalalala lorem oooooooooooooooooooooooooo<br>oooooooooooooooooooooooooooooooooooooooo</span>
+                                        <div>
+                                            <h5>the account</h5>
+                                            
+                                            @if($payment_method=="1")
+                                            <span>06060</span>
+                                            @elseif($payment_method=="44")
+                                              <span>4444</span>
+                                              @else
+                                                <span>tytyty</span>
+                                                @endif
+                                        </div>
+                                        <div>
+                                            <h5>the total</h5>
+                                            <span>{{$total_deposited_amount}}</span>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                        
+                        
+                                <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(1)">
+                                    {{ trans('Parent_trans.Back') }}
+                                </button>
+                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button" wire:click="secondStepSubmit">
+                                    {{ trans('Parent_trans.Back') }}
+                                </button>
+                        
+                            </div>
+                        </div>
+                        </div>
+                        
+
+                                    <!-- @include('livewire.upload_photo') -->
+
+                                    @if ($currentStep != 3)
+    <div style="display: none" class=" setup-content" id="step-1">
+@endif
+
+<div class="col-xs-12 ">
+    <div class="col-md-12">
+        <br>
+
+
+        <div class="form-row">
+            <div class="col">
+            @if($Proof_img)
+            <img src="{{$Proof_img}}" width="200px"/>
+            @endif
+                <label for="title">Proof_img</label>
+                <input type="file" name="Proof_img" id="Proof_img" wire:change="$emit('fileChoose')"  class="form-control">
+                @error('Proof_img')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+           
+        </div>
+
+  <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(2)">
+            back
+                </button>
+
+<button class="btn btn-primary btn-sm nextBtn btn-lg pull-right" wire:click="save"
+    type="button">confirm
+</button>
+
+    </div>
+</div>
+
+</div>
+
+@section('scripts')
+<script>
+window.livewire.on('fileChoose',()=>{
+    let inputField = document.getElementById('Proof_img');
+    let file = inputField.files[0];
+    let reader = new FileReader();
+    reader.onloadend = ()=>{
+window.livewire.emit('fileUploaded',reader.result)    }
+    reader.readAsDataURL(file);
+    
+})
+</script>
+
+@endsection
+                    
+                      @livewireScripts
+                    </div>
+                    
+
+                </div>
+            </div>
+            
+            {{-- <x-footer-2 /> --}}
+        </div>
+    @endsection
+</div>

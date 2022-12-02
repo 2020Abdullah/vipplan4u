@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset("assets/plugins/css/all.min.css") }}">
     <link href="{{ asset("assets/plugins/css/bootstrap.rtl.min.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/styles/css/style.css") }}" rel="stylesheet">
+
     @yield('styles')
 </head>
 <body>

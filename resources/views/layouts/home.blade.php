@@ -12,6 +12,9 @@
     <link href="{{ asset("assets/dashboard/vendors/css/vendor.bundle.base.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/dashboard/vendors/mdi/css/materialdesignicons.min.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/dashboard/css/style.css") }}" rel="stylesheet">
+
+            <link href="{{ asset("asset-css/wizard.css") }}" rel="stylesheet">
+
     @yield('styles')
 </head>
 <body>

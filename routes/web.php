@@ -5,6 +5,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\paymentController;
+use App\Http\Controllers\Admin\PaymentMethodController;
+
+use App\Http\Controllers\Livewire\AddPayment;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +43,12 @@ Route::group(['middleware' => ['guest']], function(){
 });
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::post('/payment', [paymentController::class, 'index'])->name('payment.index');
+    Route::post('payment/{id}', [paymentController::class, 'index'])->name('payment.index');
+    // Route::view('add_payment','livewire.payment');
+    // Route::get('/add_payment', [AddPayment::class, 'index'])->name('add_payment');
+    // Route::get('index', [PaymentMethodController::class, 'index'])->name('payment_method.index');
+    Route::get('/index',[\App\Http\Controllers\PaymentMethodController::class,'index'])->name('payment_method.index');
+
 });
 
 // users Routes
@@ -52,10 +61,14 @@ Route::get('dashboard', [HomeController::class, 'user'])->name('user.dashboard')
 Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
 
 Route::resource('admin/package', PackageController::class);
+Route::resource('admin/payment_method', PaymentMethodController::class);
+
 
 Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
 
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 
+
+//======================== payment ===========
 

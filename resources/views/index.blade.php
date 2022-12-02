@@ -115,10 +115,10 @@
                                                     @endif
                                                     <li><a href="#" onclick="event.preventDefault()">نسبة الربح {{($card->card_earn_num * $card->card_expire) / $card->card_Rate * 100 }} $ اسبوعياً</a></li>
                                                 </ul>
-                                                <form method="POST" action="{{ route('payment.index') }}">
+                                                <form method="POST" action="{{ route('payment.index', $card->id) }}" >
                                                     @csrf
                                                     @method('POST')
-                                                    <input type="hidden" name="card_id" value="{{ $card->id }}">
+                                                    <input type="hidden" name="card_id" value="{{ $card->id }}" >
                                                     <a class="btn btn-plus" href="#"><i class="fa fa-plus"></i></a>
                                                     <input class="btn btn-white" type="submit" value="اشترى الآن">
                                                 </form>
@@ -190,3 +190,21 @@
 
     <!-- footer-area end -->
 @endsection
+
+
+
+
+{{-- @section('scripts')
+<script>
+window.livewire.on('card_id',()=>{
+    let inputField = document.getElementById('card_id');
+    let file = inputField.files[0];
+    let reader = new FileReader();
+    reader.onloadend = ()=>{
+window.livewire.emit('fileUploaded34',reader.result)    }
+    reader.readAsDataURL(file);
+    
+})
+</script>
+
+@endsection --}}
