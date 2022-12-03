@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function(){
     // Route::view('add_payment','livewire.payment');
     // Route::get('/add_payment', [AddPayment::class, 'index'])->name('add_payment');
     // Route::get('index', [PaymentMethodController::class, 'index'])->name('payment_method.index');
-    Route::get('/index',[\App\Http\Controllers\PaymentMethodController::class,'index'])->name('payment_method.index');
+    // Route::get('/index',[\App\Http\Controllers\PaymentMethodController::class,'index'])->name('payment_method.index');
 
 });
 

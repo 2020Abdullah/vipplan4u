@@ -23,6 +23,11 @@
                                 </div>
                                 <!-- Pay ways -->
                                 <div class="row">
+                                       <?php
+                                $payment_methods = \App\Models\paymentMethod::orderBy('id', 'DESC')->get();
+                                
+                                ?>
+
                                     @forelse ($payment_methods as $payment_method)
                                         <div class="col-md-6 pay-way">
                                             {{-- <input type="hidden" wire:key="payment_method" value="{{$payment_method->id}}" /> --}}

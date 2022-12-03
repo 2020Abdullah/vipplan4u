@@ -16,8 +16,12 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
+
+        // dd('gg');
         $payment_methods = paymentMethod::orderBy('id','DESC')->get();
-        return view('livewire.payments',compact('payment_methods'));  
+
+        // dd( $payment_methods2 );
+        return view('livewire.payment_methode',compact('payment_methods'));  
     }
 
 
