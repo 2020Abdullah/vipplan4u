@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+// use App\Http\Controllers\Admin\PaymentAdminController;
+
 
 use App\Http\Controllers\Livewire\AddPayment;
 
@@ -62,7 +64,13 @@ Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.das
 
 Route::resource('admin/package', PackageController::class);
 Route::resource('admin/payment_method', PaymentMethodController::class);
+////Admin payment
+Route::get('/index',[\App\Http\Controllers\Admin\PaymentAdminController::class,'index'])->name('paymentAdmin.index');
+Route::get('/index',[\App\Http\Controllers\Admin\PaymentAdminController::class,'index'])->name('paymentAdmin.index');
+Route::get('paymentAdmin/change_status/{id}',[\App\Http\Controllers\Admin\PaymentAdminController::class,'changeStatus'])->name('paymentAdmin.change_status');
+Route::post('/update_status/update/{id}',[\App\Http\Controllers\Admin\PaymentAdminController::class,'updateStatus'])->name('paymentAdmin.update_status');
 
+////end
 
 Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
 

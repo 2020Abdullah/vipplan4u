@@ -28,5 +28,12 @@
           <span class="menu-title">payment method</span>
         </a>
       </li>
+
+       <li class="nav-item active">
+        <a class="nav-link" href="{{route('paymentAdmin.index')}}">
+          <i class="mdi mdi-home menu-icon"></i>
+          <span class="menu-title">payment done</span>
+        </a>
+      </li>
     </ul>
   </nav>

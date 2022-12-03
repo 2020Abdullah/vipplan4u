@@ -92,19 +92,28 @@ class AddPayment extends Component
         ]);
 
         // return dd();
-        $account= \App\Models\Account::findorfail(auth()->user()->id);
+        // $account= \App\Models\Account::findorfail(auth()->user()->id);
+        $account = Account::where('user_type','App\Models\User')->where('user_id',auth('web')->user()->id);
+
+        // dd( $account);
+        // $account->update([
+
+        //     'total_amount' =>$this->total_deposited_amount, 
             
-        $account->update([
+        //     ]);
+          
+           $account->increment('total_amount', $this->total_deposited_amount);
 
-            'total_amount' =>$this->total_deposited_amount,
-            ]);
+
+          
+    
 
 
-            
-     $check_amount = Account::where('user_type','App\Models\User')->where('user_id',auth()->user()->id)->pluck('total_amount')->first();
-     //$check_amount2 = Package::where('user_id',auth()->user()->id)->pluck('total_amount')->first();
+     $account_id = Account::where('user_type', 'App\Models\User')->where('user_id', auth('web')->user()->id)->pluck('id')->first();
+     //$check_amount = Account::where('user_type','App\Models\User')->where('user_id',auth('web')->user()->id)->pluck('id')->first();
+     $check_amount2 = Package::where('id',$this->cardid)->pluck('card_min')->first();
 
-     if($check_amount =32 ){
+     if($this->total_deposited_amount > $check_amount2 ){
 
      
 
@@ -120,22 +129,45 @@ class AddPayment extends Component
         'payment_method_id' =>$this->payment_method_id,
         // 'package_id'
     //    'package_id'=> Package::findOrFail($request->card_id),
-        'account_id' => auth()->user()->id,
+        'account_id' => $account_id,
         // 'package_id' =>$this->package_id,
         'package_id' =>$this->cardid,
 
         ]);
 
-    }else{
-        return back()->with('error','there is error');
-    }
-     
-        
-        $this->total_deposited_amount ='';
+//         ///////////////////////////////
+//         #############################
+//           // set cashes accounts
+
+//           $total_amount = Account::where('user_type', 'App\Models\User')->where('user_id', auth('web')->user()->id)->pluck('total_amount')->first();
+
+//           $account_user = Account::where('user_type', 'App\Models\User')->where('user_id', auth('web')->user()->id);
+  
+//           $account_admin = Account::where('user_type', 'App\Models\Admin')->where('user_id', 1);
+  
+  
+//           // updated accounts
+  
+//           $account_user->update([
+//               'total_amount' => 0
+//           ]);
+  
+//           $account_admin->increment('belance', $total_amount);
+//   #######################################3
+//         //////////////////////////////
+  $this->total_deposited_amount ='';
         $this->payment_method_id ='';
         $this->Proof_img ='';
 
         $this->currentStep = 1;
+
+
+    }else{
+        $this->currentStep = 2;
+    }
+     
+        
+      
 
    
        }
@@ -154,12 +186,6 @@ class AddPayment extends Component
         return $imageName;
     }
 
-    //get image url 
-    public function getImagePathAttribute(){
-        return Storage::disk('public')->url($this->Proof_img);
-    }
-
-      
 
        public function back($step)
        {

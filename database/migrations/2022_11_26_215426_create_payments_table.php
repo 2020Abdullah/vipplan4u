@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->string('Proof_img');
             // $table->string('payment_method');
 
-            $table->string('status')->default('inactive');
+            $table->enum('status',['active','inactive'])->default('inactive');
             $table->foreignId('payment_method_id')->references('id')->on('payment_methods')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->foreignId('account_id')->references('id')->on('accounts')->cascadeOnDelete()->cascadeOnUpdate();
