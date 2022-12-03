@@ -36,19 +36,19 @@
           <div class="row">
               <div class="col-md-12">
                   <div class="form-group">
-                      <label for=""> method name</label>
+                      <label for="">اسم وسيلة الدفع</label>
                       <input type="text" class="form-control" name="name">
                   </div>
               </div>
               <div class="col-md-12">
                   <div class="form-group">
-                      <label for=""> method account</label>
+                      <label for="">حسابك</label>
                       <input type="text" class="form-control" name="number_account">
                   </div>
               </div>
               <div class="col-md-12">
                   <div class="form-group">
-                      <label for="">photo</label> 
+                      <label for="">صورة</label> 
                       <input type="file" class="form-control" name="photo">
                   </div>
               </div>

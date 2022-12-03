@@ -4,28 +4,26 @@
             <div class="stepwizard-step">
                 <a href="#step-1" type="button"
                     class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-success' }}">1</a>
-                <p>step1</p>
+                <p>الخطوة 1</p>
             </div>
             <div class="stepwizard-step">
                 <a href="#step-2" type="button"
                     class="btn btn-circle {{ $currentStep != 2 ? 'btn-default' : 'btn-success' }}">2</a>
-                <p>step2</p>
+                <p>الخطوة 2</p>
             </div>
             <div class="stepwizard-step">
                 <a href="#step-3" type="button"
                     class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-success' }}"
                     disabled="disabled">3</a>
+                    <p>الخطوة 3</p>
                 <p></p>
             </div>
         </div>
     </div>
 
-    {{-- @livewire('payment_methode') --}}
-
     @include('livewire.payment_methode')
-
-        @include('livewire.information')
-                @include('livewire.upload_photo')
+    @include('livewire.information')
+    @include('livewire.upload_photo')
 
   @livewireScripts
 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-الباقات - لوحة التحكم
+طرق الدفع - لوحة التحكم
 @endsection
 
 @section('header')
@@ -33,7 +33,7 @@
       <!-- content -->
       <div class="row">
           <div class="col-md-12 mb-3">
-              <a href="{{route('payment_method.create')}}" class="btn btn-gradient-success btn-rounded btn-fw">إضافة new جديدة</a>
+              <a href="{{route('payment_method.create')}}" class="btn btn-gradient-success btn-rounded btn-fw">إضافة وسيلة دفع جديدة</a>
           </div>
           <div class="col-md-12">
             <div class="table-responsive">

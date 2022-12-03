@@ -36,6 +36,10 @@ body {
     display: table-cell;
     text-align: center;
     position: relative;
+    top: -15px;
+}
+.stepwizard-step > a:not(.btn-success) {
+    background-color: #ccc;
 }
 
 .btn-circle {
