@@ -3,6 +3,7 @@
 
     @section('styles')
         <link href="{{ asset('assets/styles/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('asset-css/custom.css') }}" rel="stylesheet">
     @endsection
 
     @section('title')
@@ -24,12 +25,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-pricing-wrap text-center">
                             <span class="animate-dots"></span>
-
-                            <span>{{ $card->id }}</span>
-                            {{-- <input type="hidden" store="$store" wire:key="'package_id-'.$card->id" /> --}}
-                                <input type="hidden" value="{{ $card->id }}" name="package_id">
-
-
+                            <input type="hidden" value="{{ $card->id }}" name="package_id">
                             <div class="price">{{ $card->card_Rate }} %</div>
                             <div class="thumb">
                                 <img src="{{ asset('assets/images/packages/01.png') }}" alt="icon">
@@ -55,7 +51,7 @@
                                         اسبوعياً</a>
                                 </li>
 
-                                <div><a class="btn btn-danger" href="{{ url('/') }}">back</a></div>
+                                <div><a class="btn btn-danger" href="{{ url('/') }}">تغيير الباقة</a></div>
                             </ul>
 
                         </div>
