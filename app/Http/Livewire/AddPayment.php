@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Account;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Livewire\WithFileUploads;
 
 // use App\Http\Requests\StoreSections;
 
@@ -18,7 +19,8 @@ use Intervention\Image\ImageManagerStatic ;
 
 class AddPayment extends Component
 {
-   
+    use WithFileUploads;
+
     public $total_deposited_amount;
     public $payment_method_id;
     public $Proof_img;
@@ -91,6 +93,10 @@ class AddPayment extends Component
             'Proof_img' => 'required',
         ]);
 
+
+        /// image 
+        
+
         // return dd();
         // $account= \App\Models\Account::findorfail(auth()->user()->id);
         $account = Account::where('user_type','App\Models\User')->where('user_id',auth('web')->user()->id);
@@ -125,7 +131,10 @@ class AddPayment extends Component
        // $payment->payment_method = $this->payment_method;
         
         'total_deposited_amount' => $this->total_deposited_amount,
+        // 'Proof_img' =>$this->Proof_img->store('photos'),
         'Proof_img' =>$this->storeImage(),
+
+        
         'payment_method_id' =>$this->payment_method_id,
         // 'package_id'
     //    'package_id'=> Package::findOrFail($request->card_id),
@@ -135,24 +144,10 @@ class AddPayment extends Component
 
         ]);
 
-//         ///////////////////////////////
-//         #############################
-//           // set cashes accounts
 
-//           $total_amount = Account::where('user_type', 'App\Models\User')->where('user_id', auth('web')->user()->id)->pluck('total_amount')->first();
 
-//           $account_user = Account::where('user_type', 'App\Models\User')->where('user_id', auth('web')->user()->id);
-  
-//           $account_admin = Account::where('user_type', 'App\Models\Admin')->where('user_id', 1);
-  
-  
-//           // updated accounts
-  
-//           $account_user->update([
-//               'total_amount' => 0
-//           ]);
-  
-//           $account_admin->increment('belance', $total_amount);
+
+
 //   #######################################3
 //         //////////////////////////////
   $this->total_deposited_amount ='';

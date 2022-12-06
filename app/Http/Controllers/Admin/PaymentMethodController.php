@@ -60,8 +60,8 @@ class PaymentMethodController extends Controller
                 'number_account'=>$request->number_account,
                 'photo' => $imageNew
             ]);
-return back();
-        // return $request->all();
+            return redirect()->route('payment_method.index')->with('success', 'تم تغيير البيانات بنجاح');
+            // return $request->all();
     }
 
     /**
@@ -104,13 +104,13 @@ return back();
         //make update for image
         // if($request->hasFile('photo')) {
    
-        //     $imageNew = '';
-        //     if($request->hasFile('photo')){
-        //         $img = $request->photo;
-        //         $imageNew= time().'.'.rand(0,1000).'.'.$img->extension();
-        //         $img->move(public_path('assets/uploads') , $imageNew);
+            $imageNew = '';
+            if($request->hasFile('photo')){
+                $img = $request->photo;
+                $imageNew= time().'.'.rand(0,1000).'.'.$img->extension();
+                $img->move(public_path('assets/uploads') , $imageNew);
         
-        //     }
+            }
 
 
 
@@ -119,7 +119,7 @@ return back();
                 'number_account' => $request->number_account,
       
 
-                // 'photo' => $imageNew
+                'photo' => $imageNew
             ]);
         // }
         return redirect()->route('payment_method.index')->with('success', 'تم حفظ البيانات بنجاح');

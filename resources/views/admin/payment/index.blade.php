@@ -70,17 +70,18 @@
 
 
 
-                                        {{-- <td>{{ $payment->payment_method_id }}</td> --}}
-                                        <td>{{ \App\Models\paymentMethod::where('id', $payment->payment_method_id)->value('name') }}
+                                        <td>{{ $payment->payment_method->name }}</td>
+                                        {{-- <td>{{ \App\Models\paymentMethod::where('id', $payment->payment_method_id)->value('name') }} --}}
                                             {{-- <td>{{ \App\Models\Account::where('id', $payment->account_id)->value('user_id') }} --}}
 
                                         <td>{{ $payment->account_id }}</td>
-                                        {{-- <td>{{ $payment->package_id }}</td> --}}
+                                        <td>{{ $payment->package->card_name }}</td>
 
-                                        <td>{{ \App\Models\package::where('id', $payment->package_id)->value('card_name') }}
+                                        {{-- <td>{{ \App\Models\package::where('id', $payment->package_id)->value('card_name') }} --}}
+           {{-- <td><img src="{{ $payment->Proof_img->temporaryUrl()}}"></td>  --}}
 
                                             @if ($payment->Proof_img)
-                                        <td><img src="{{ 'storage/' . $payment->Proof_img }}"
+                                        <td><img src="{{ Storage::url($payment->Proof_img) }}"
                                                 style="width:200px;height:200px;" /></td><br>
                                 @endif
 
@@ -88,7 +89,7 @@
                                     <a href="{{ route('paymentAdmin.change_status', $payment->id) }}" class="btn btn-success btn-rounded btn-icon">
                                         <i class="mdi mdi-table-edit"></i>
                                     </a>
-                                    <form action="#" method="POST">
+                                    <form action="{{ route('paymentAdmin.destroy', $payment->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-success btn-rounded btn-icon"><i

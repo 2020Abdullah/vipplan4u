@@ -75,37 +75,32 @@ class PaymentAdminController extends Controller
             // $account_user->increment('total_amount', $total_deposited_amount);
             // $account_admin->decrement('belance', $total_deposited_amount);
         }
-        return back();
+        // return back();
 
 
 
 
-        if($request->status == 'active'){
 
-            
-            $paymentAdmins->update([
-            'status'=>'active',
-            ]);
-            // dd($request->status);
-            // $account_user->update([
-            //     'total_amount' => 0
-            // ]);
-    
-          //  $account_admin->increment('belance', $total_amount);
-             }else{
 
-                $paymentAdmins->update([
-                    'status'=>'inactive',
-                    ]);
-
-            // $account_user->update([
-            //     'total_amount' => $total_amount
-            // ]);
-    
-            // $account_admin->decrement('belance', $total_amount);
-        }
-
-        return back();
+        return redirect()->route('paymentAdmin.index')->with('success', 'تم تغيير البيانات بنجاح');
     }
 
+
+
+    public function destroy($id)
+    {
+        $payment = payment::find($id);
+        if($payment){
+                  $status = $payment->delete();
+
+                  
+                  if($status){
+                      return redirect()->route('paymentAdmin.index')->with('success','payment_method successfuly deleted');
+                  }else{
+                      return back()->with('error','something went wrong');
+                  }
+        }else{
+            return back()->with('error','Data not found !');
+        }
+    }
 }

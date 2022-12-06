@@ -47,7 +47,13 @@
               <img src="{{asset('assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image">
               <h4 class="font-weight-normal mb-3">إجمالي المودعين
               </h4>
-              <h2 class="mb-5">0</h2>
+              <h2 class="mb-5"> 
+              
+               <?php 
+               $user_count = \App\Models\Account::where('user_type', 'App\Models\user')->count();
+
+              ?>
+              <span>{{$user_count }}</span></h2>
             </div>
           </div>
         </div>
@@ -57,7 +63,15 @@
               <img src="{{asset('assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image">
               <h4 class="font-weight-normal mb-3">إجمالي الإيداعات
               </h4>
-              <h2 class="mb-5">0</h2>
+              <h2 class="mb-5">
+
+              <?php 
+               $account_admin = \App\Models\Account::where('user_type', 'App\Models\Admin')->where('user_id', 1)->pluck('belance')->first();;
+
+              ?>
+              <span>{{$account_admin }}</span>
+              
+              </h2>
             </div>
           </div>
         </div>

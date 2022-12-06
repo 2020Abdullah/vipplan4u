@@ -51,7 +51,7 @@
                                         اسبوعياً</a>
                                 </li>
 
-                                <div><a class="btn btn-danger" href="{{ url('/') }}">تغيير الباقة</a></div>
+                                <div><a class="btn btn-danger" href="{{ route('package.change_package') }}">تغيير الباقة</a></div>
                             </ul>
 
                         </div>
