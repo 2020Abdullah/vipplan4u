@@ -41,7 +41,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col"># </th>
-                                    <th scope="col"> total_deposited_amount</th>
+                                    <th scope="col"> total_deposited_amounttt</th>
                                     <th scope="col"> status</th>
                                     <th scope="col">payment_method_id </th>
                                     <th scope="col"> account_id</th>
