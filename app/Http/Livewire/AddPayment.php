@@ -154,7 +154,10 @@ class AddPayment extends Component
         $this->payment_method_id ='';
         $this->Proof_img ='';
 
-        $this->currentStep = 1;
+        // $this->currentStep = 1;
+        // session()->flash('message', 'Post successfully created.');
+        // return view('pages.user.package.paied_package');
+        return redirect()->to('paied_package')->with('success', 'تم حفظ البيانات بنجاح');
 
 
     }else{

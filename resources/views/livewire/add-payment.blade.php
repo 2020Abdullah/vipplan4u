@@ -15,7 +15,7 @@
                 <a href="#step-3" type="button"
                     class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-success' }}"
                     disabled="disabled">3</a>
-                    <p>الخطوة 3</p>
+                <p>الخطوة 3</p>
                 <p></p>
             </div>
         </div>
@@ -25,5 +25,5 @@
     @include('livewire.information')
     @include('livewire.upload_photo')
 
-  @livewireScripts
+    @livewireScripts
 </div>

@@ -51,6 +51,10 @@ Route::group(['middleware' => ['auth']], function(){
     // Route::get('index', [PaymentMethodController::class, 'index'])->name('payment_method.index');
     Route::get('/change_package',[\App\Http\Controllers\PackageUController::class,'change_package'])->name('package.change_package');
     Route::get('/paied_package',[\App\Http\Controllers\PackageUController::class,'paied_package'])->name('package.paied_package');
+    Route::get('/pocket',[\App\Http\Controllers\Admin\PocketController::class,'index'])->name('pocket.index');
+  
+  
+    Route::get('/create',[\App\Http\Livewire\Pocket\Pocket::class,'create'])->name('pocket.create');
 
     
 });
@@ -73,6 +77,11 @@ Route::delete('/destroy/{id}',[\App\Http\Controllers\Admin\PaymentAdminControlle
 // Route::get('/index',[\App\Http\Controllers\Admin\PaymentAdminController::class,'index'])->name('paymentAdmin.index');
 Route::get('paymentAdmin/change_status/{id}',[\App\Http\Controllers\Admin\PaymentAdminController::class,'changeStatus'])->name('paymentAdmin.change_status');
 Route::post('/update_status/update/{id}',[\App\Http\Controllers\Admin\PaymentAdminController::class,'updateStatus'])->name('paymentAdmin.update_status');
+
+////////////////////////////////////////////////////
+Route::get('/indexAdmin',[\App\Http\Controllers\Admin\PocketController::class,'indexAdmin'])->name('pocketAdmin.index');
+Route::get('pocket/change_status/{id}',[\App\Http\Controllers\Admin\PocketController::class,'changeStatus'])->name('pocket.change_status');
+Route::post('pocket/update_status/update/{id}',[\App\Http\Controllers\Admin\PocketController::class,'updateStatus'])->name('pocket.update_status');
 
 ////end
 

@@ -37,7 +37,13 @@
 
 
             <div class="row">
-
+                <div>
+                    @if (session()->has('message'))
+                        <div class="p-3 bg-red text-green-800 rounded shadow-sm" style="background:red;">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="col-12">
                     <div class="pricing-tab">
                         <nav>
@@ -48,67 +54,85 @@
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-roi">
-                                <div class="row justify-content-center">
-                                    @foreach ($paied_package2 as $card) 
+                                <!-- content -->
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <a href="{{ url('/') }}"
+                                            class="btn btn-gradient-success btn-rounded btn-fw">إضافة باقة جديدة</a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered bg-white">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">رقم الباقة</th>
+                                                        <th scope="col">اسم الباقة</th>
+                                                        <th scope="col">نوع الباقة</th>
+                                                        <th scope="col">الحد الأدني للإيداع</th>
+                                                        <th scope="col">الحد الأقصي للإيداع</th>
+                                                        <th scope="col">نسبة الربح</th>
+                                                        <th scope="col">مدة انتهاء الباقة</th>
+                                                        <th scope="col">موعد نزول الربح </th>
+                                                        <th scope="col">عدد مرات الربح</th>
+                                                        <th scope="col">اتخاذ إجراء</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($paied_package2 as $card)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $card->package->card_Rate }}</td>
+                                                            <td>{{ $card->package->card_min }}</td>
+                                                            <td>{{ $card->package->card_mix }}</td>
+                                                            <td>
+                                                                @if ($card->package->card_expire == 7)
+                                                                    <li><a href="#"
+                                                                            onclick="event.preventDefault()">{{ $card->package->card_earn_num }}
+                                                                            مرات</a></li>
+                                                                @endif
+                                                            </td>
+                                                            <td> {{ (($card->package->card_earn_num * $card->package->card_expire) / $card->package->card_Rate) * 100 }}
+                                                            </td>
+                                                            <td>{{ $card->package->card_name }}</td>
 
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-pricing-wrap text-center">
-                                                <span class="animate-dots"></span>
-                                                <div class="price">{{ $card->package->card_Rate }} %</div>
-                                                <div class="thumb">
-                                                    <img src="{{ asset('assets/images/packages/01.png') }}" alt="icon">
-                                                </div>
-                                                <h5>{{ $card->package->card_name }}</h5>
-                                                <ul>
-                                                    <li><a href="#" onclick="event.preventDefault()">الحد الأدني
-                                                            للإيداع {{ $card->package->card_min }}</a></li>
-                                                    <li><a href="#" onclick="event.preventDefault()">الحد الأقصى
-                                                            للإيداع {{ $card->package->card_mix }}</a></li>
-                                                    <li><a href="#" onclick="event.preventDefault()">عدد مرات الربح
-                                                            {{ $card->package->card_earn_num }} مرات</a></li>
-                                                    @if ($card->package->card_expire == 7)
-                                                        <li><a href="#"
-                                                                onclick="event.preventDefault()">{{ $card->package->card_earn_num }}
-                                                                مرات</a></li>
-                                                    @endif
-                                                    <li><a href="#" onclick="event.preventDefault()">نسبة الربح
-                                                            {{ (($card->package->card_earn_num * $card->package->card_expire) / $card->package->card_Rate) * 100 }}
-                                                            $ اسبوعياً</a></li>
-                                                </ul>
-                                                <form method="POST" action="{{ route('payment.index', $card->package->id) }}">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <input type="hidden" name="card_id" value="{{ $card->package->id }}">
-                                                    <a class="btn btn-plus" href="#"><i class="fa fa-plus"></i></a>
-                                                    <input class="btn btn-white" type="submit" value="اشترى الآن">
-                                                </form>
+
+                                                            <td>{{ $card->card_earn_num }}</td>
+                                                
+                                                        </tr>
+                                                        @empty
+                                                            <tr class="text-center">
+                                                                <td colspan="10">لا توجد باقة مضافة أو مفعلة بعد</td>
+                                                            </tr>
+                                                        @endforelse ($cards as $card)
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    </div>
+                          
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-fixed">
-                                <div class="row justify-content-center">
+                                <div class="tab-pane fade" id="nav-fixed">
+                                    <div class="row justify-content-center">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
+
             </div>
-
-
+            <!-- content-wrapper ends -->
+            <!-- footer -->
+            <footer class="footer">
+                <div class="container-fluid d-flex justify-content-between">
+                    <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © المهندس</span>
+                    <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"><a href="#" target="_blank">عبد الله
+                            محمد</a> تصميم وبرمجة</span>
+                </div>
+            </footer>
+            <!-- End footer -->
         </div>
-        <!-- content-wrapper ends -->
-        <!-- footer -->
-        <footer class="footer">
-            <div class="container-fluid d-flex justify-content-between">
-                <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © المهندس</span>
-                <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"><a href="#" target="_blank">عبد الله
-                        محمد</a> تصميم وبرمجة</span>
-            </div>
-        </footer>
-        <!-- End footer -->
-    </div>
-    <!-- main-panel ends -->
-@endsection
+        <!-- main-panel ends -->
+    @endsection

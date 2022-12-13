@@ -37,7 +37,11 @@
               <img src="{{asset('assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image">
               <h4 class="font-weight-normal mb-3">عدد المستخدمين
               </h4>
-              <h2 class="mb-5">0</h2>
+                 <?php 
+               $userCount = \App\Models\User::count();
+
+              ?>
+              <span>{{$userCount }}</span></h2>
             </div>
           </div>
         </div>
@@ -66,7 +70,7 @@
               <h2 class="mb-5">
 
               <?php 
-               $account_admin = \App\Models\Account::where('user_type', 'App\Models\Admin')->where('user_id', 1)->pluck('belance')->first();;
+               $account_admin = \App\Models\Account::where('user_type', 'App\Models\User')->sum('total_amount');
 
               ?>
               <span>{{$account_admin }}</span>
@@ -75,6 +79,29 @@
             </div>
           </div>
         </div>
+
+
+
+
+           <div class="col-md-4 stretch-card grid-margin">
+          <div class="card bg-gradient-danger card-img-holder text-white">
+            <div class="card-body">
+              <img src="{{asset('assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image">
+              <h4 class="font-weight-normal mb-3">Admin account 
+              </h4>
+                 <?php 
+               $admin_account = \App\Models\Account::where('user_type', 'App\Models\Admin')->pluck('total_amount')->first();
+
+              ?>
+              <span>{{$admin_account }}</span></h2>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
       </div>
     </div>
     <!-- content-wrapper ends -->

@@ -24,7 +24,12 @@
                   <span class="menu-title">change باقة</span>
               </a>
           </li>
-
+         <li class="nav-item active">
+              <a class="nav-link" href="{{ route('pocket.index') }}">
+                  <i class="mdi mdi-home menu-icon"></i>
+                  <span class="menu-title">user accounts باقة</span>
+              </a>
+          </li>
 
           <li class="nav-item active">
               <a class="nav-link" href="{{ route('package.paied_package') }}">
