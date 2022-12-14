@@ -41,12 +41,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col"># </th>
-                                    <th scope="col"> total_deposited_amounttt</th>
-                                    <th scope="col"> status</th>
-                                    <th scope="col">payment_method_id </th>
+                                    <th scope="col"> name</th>
+                                    <th scope="col"> price</th>
+                                    <th scope="col">photo </th>
                                     <th scope="col"> account_id</th>
-                                    <th scope="col"> package_id </th>
-                                    <th scope="col"> photo</th>
+                                    <th scope="col"> method-id </th>
+                                    <th scope="col"> status</th>
 
                                     <th scope="col">اتخاذ إجراء</th>
                                 </tr>
@@ -55,14 +55,20 @@
                                 @forelse ($pockets as $pocket)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $pocket->total_deposited_amount }}</td>
+                                        <td>{{ $pocket->name }}</td>
+                                        <td>{{ $pocket->price }}</td>
+
+                                        @if ($pocket->photo)
+                                            <td><img src="{{ Storage::url($pocket->photo) }}"
+                                                    style="width:200px;height:200px;" /></td><br>
+                                        @endif
 
 
-
+                                        <td>{{ $pocket->account_id }}</td>
+                                        <td>{{ $pocket->payment_method->name }}</td>
                                         <td>
                                             @if ($pocket->status == 'active')
                                                 <span class="badge badge-success">{{ $pocket->status }}</span>
-                                         
                                             @else
                                                 <span class="badge badge-danger">{{ $pocket->status }}</span>
                                             @endif
@@ -70,37 +76,27 @@
 
 
 
-                                        <td>{{ $pocket->payment_method->name }}</td>
-                                        {{-- <td>{{ \App\Models\paymentMethod::where('id', $payment->payment_method_id)->value('name') }} --}}
-                                            {{-- <td>{{ \App\Models\Account::where('id', $payment->account_id)->value('user_id') }} --}}
 
-                                        <td>{{ $pocket->account_id }}</td>
-                                        {{-- <td>{{ $pocket->package->card_name }}</td> --}}
 
-                                        {{-- <td>{{ \App\Models\package::where('id', $payment->package_id)->value('card_name') }} --}}
-           {{-- <td><img src="{{ $payment->Proof_img->temporaryUrl()}}"></td>  --}}
 
-                                            @if ($pocket->Proof_img)
-                                        <td><img src="{{ Storage::url($pocket->Proof_img) }}"
-                                                style="width:200px;height:200px;" /></td><br>
-                                @endif
 
-                                <td>
-                                    <a href="{{ route('pocket.change_status', $pocket->id) }}" class="btn btn-success btn-rounded btn-icon">
-                                        <i class="mdi mdi-table-edit"></i>
-                                    </a>
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-success btn-rounded btn-icon"><i
-                                                class="mdi mdi-delete"></i></button>
-                                    </form>
-                                </td>
-                                </tr>
-                            @empty
-                                <tr class="text-center">
-                                    <td colspan="10">لا توجد باقة مضافة أو مفعلة بعد</td>
-                                </tr>
+                                        <td>
+                                            <a href="{{ route('pocket.change_status', $pocket->id) }}"
+                                                class="btn btn-success btn-rounded btn-icon">
+                                                <i class="mdi mdi-table-edit"></i>
+                                            </a>
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-success btn-rounded btn-icon"><i
+                                                        class="mdi mdi-delete"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="text-center">
+                                        <td colspan="10">لا توجد باقة مضافة أو مفعلة بعد</td>
+                                    </tr>
                                 @endforelse ($payments as $payment)
                             </tbody>
                         </table>

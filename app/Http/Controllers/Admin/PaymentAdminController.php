@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Account;
 use DB;
+use Illuminate\Support\Facades\Storage;
+
 class PaymentAdminController extends Controller
 {
     public function index()
@@ -90,7 +92,11 @@ class PaymentAdminController extends Controller
     public function destroy($id)
     {
         $payment = payment::find($id);
-        if($payment){
+        if($payment){    
+            
+            
+            Storage::disk('public')->delete($payment->Proof_img);
+
                   $status = $payment->delete();
 
                   

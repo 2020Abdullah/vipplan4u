@@ -10,7 +10,6 @@
                 class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-success' }}">1</a>
 
 
-            <i class="mdi mdi-angle-left fs-3 text-white next">1</i>
             <i class="mdi mdi-check fs-3 text-white correct"></i>
         </div>
         <!-- End of the first step -->
@@ -24,7 +23,6 @@
         <div class=" step-icon second-step-icon d-flex align-items-center justify-content-center mx-2 "> <a
                 href="#step-2" type="button"
                 class="btn btn-circle {{ $currentStep != 2 ? 'btn-default' : 'btn-success' }}">2</a>
-            <i class="mdi mdi-angle-left fs-3 text-white next">2</i>
             <i class="mdi mdi-check fs-3 text-white correct"></i>
         </div>
         <!-- End of the second step -->
@@ -38,7 +36,6 @@
         <div class=" step-icon last-step-icon d-flex align-items-center justify-content-center me-2 "> <a href="#step-3"
                 type="button" class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-success' }}"
                 disabled="disabled">3</a>
-            <i class="mdi mdi-angle-left fs-3 text-white next">3</i>
             <i class="mdi mdi-check fs-3 text-white correct"></i>
         </div>
         <!-- End of the lst step -->

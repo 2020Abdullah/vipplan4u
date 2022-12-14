@@ -20,7 +20,15 @@ class PocketController extends Controller
      ///user 
     public function index()
     {
-        return view('user.pocket.index');
+
+        $account_id = Account::where('user_type', 'App\Models\User')->where('user_id', auth('web')->user()->id)->pluck('id')->first();
+
+    //    $paymentAdmins = PocketU::findOrfail($request->pocket_id);
+    $total_amount = Account::where('user_type', 'App\Models\User')->where('user_id', auth()->user()->id)->pluck('total_amount')->first();
+    $disposed = PocketU::where('account_id',$account_id)->limit(3)->where('status','active')->orderBy('id', 'DESC')->get();
+
+    return view('user.pocket.index',compact('total_amount','disposed'));
+        // return view('user.pocket.index');
     }
 
 
@@ -76,26 +84,34 @@ class PocketController extends Controller
         }
 
 
-return redirect()->route('pocketAdmin.index')->with('success', 'تم تغيير البيانات بنجاح');
+        return redirect()->route('pocketAdmin.index')->with('success', 'تم تغيير البيانات بنجاح');
         }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     return view('livewire.pocket.pocket');
-    //       //
-    // }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
+    public function disposed_done(){
+
+
+    // //    $paymentAdmins = PocketU::findOrfail($request->pocket_id);
+    //       $total_amount = Account::where('user_type', 'App\Models\User')->where('user_id', auth()->user()->id)->pluck('total_amount')->first();
+        
+        
+    //       $disposed = Pocket::get()->limit(3);
+
+    //       return view('user.pocket.index',compact('total_amount,disposed'));
+
+    }
+
+
+
+
+
+
+
     public function store(Request $request)
     {
         //

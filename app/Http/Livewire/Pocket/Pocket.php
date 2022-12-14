@@ -156,7 +156,7 @@ class Pocket extends Component
             // $this->currentStep = 1;
             // session()->flash('message', 'Post successfully created.');
             // return view('pages.user.package.paied_package');
-            return redirect()->to('paied_package')->with('success', 'تم حفظ البيانات بنجاح');
+            return redirect()->to('pocket')->with('success', 'تم حفظ البيانات بنجاح');
     
     
         // }else{
@@ -176,7 +176,7 @@ class Pocket extends Component
              // dd($this->image);
             //else 
             $img = ImageManagerStatic::make($this->photo)->encode('jpg'); //get it up
-            $imageName = Str::random(10).'.jpg';//get it up
+            $imageName = Str::random(20).'.jpg';//get it up
             Storage::disk('public')->put($imageName,$img);//get it up
             return $imageName;
         }

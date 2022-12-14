@@ -57,8 +57,8 @@
                                 <!-- content -->
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <a href="{{ url('/') }}"
-                                            class="btn btn-gradient-success btn-rounded btn-fw">إضافة باقة جديدة</a>
+                                        <a href="{{ url('/change_package') }}"
+                                            class="btn btn-gradient-success btn-rounded btn-fw">pay باقة جديدة</a>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="table-responsive">
@@ -74,65 +74,63 @@
                                                         <th scope="col">مدة انتهاء الباقة</th>
                                                         <th scope="col">موعد نزول الربح </th>
                                                         <th scope="col">عدد مرات الربح</th>
-                                                        <th scope="col">اتخاذ إجراء</th>
+                                                        {{-- <th scope="col">اتخاذ إجراء</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($paied_package2 as $card)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $card->package->card_Rate }}</td>
+                                                            <td>{{ $card->package->card_name }}</td>
+                                                            <td>{{ $card->package->card_type }}</td>
                                                             <td>{{ $card->package->card_min }}</td>
+
                                                             <td>{{ $card->package->card_mix }}</td>
-                                                            <td>
-                                                                @if ($card->package->card_expire == 7)
-                                                                    <li><a href="#"
-                                                                            onclick="event.preventDefault()">{{ $card->package->card_earn_num }}
-                                                                            مرات</a></li>
-                                                                @endif
-                                                            </td>
+                                                      
                                                             <td> {{ (($card->package->card_earn_num * $card->package->card_expire) / $card->package->card_Rate) * 100 }}
                                                             </td>
-                                                            <td>{{ $card->package->card_name }}</td>
+                                                            <td>{{ $card->package->card_expire }}</td>
 
+                                                            <td>{{ $card->package->card_earn_date }}</td>
 
-                                                            <td>{{ $card->card_earn_num }}</td>
-                                                
+                                                            <td>{{ $card->package->card_earn_num }}</td>
+                                                            {{-- <td>delete</td> --}}
+
                                                         </tr>
-                                                        @empty
-                                                            <tr class="text-center">
-                                                                <td colspan="10">لا توجد باقة مضافة أو مفعلة بعد</td>
-                                                            </tr>
-                                                        @endforelse ($cards as $card)
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                    @empty
+                                                        <tr class="text-center">
+                                                            <td colspan="10">لا توجد باقة payment أو  </td>
+                                                        </tr>
+                                                    @endforelse ($cards as $card)
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                          
                                 </div>
-                                <div class="tab-pane fade" id="nav-fixed">
-                                    <div class="row justify-content-center">
-                                    </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="nav-fixed">
+                                <div class="row justify-content-center">
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
 
             </div>
-            <!-- content-wrapper ends -->
-            <!-- footer -->
-            <footer class="footer">
-                <div class="container-fluid d-flex justify-content-between">
-                    <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © المهندس</span>
-                    <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"><a href="#" target="_blank">عبد الله
-                            محمد</a> تصميم وبرمجة</span>
-                </div>
-            </footer>
-            <!-- End footer -->
+
+
         </div>
-        <!-- main-panel ends -->
-    @endsection
+        <!-- content-wrapper ends -->
+        <!-- footer -->
+        <footer class="footer">
+            <div class="container-fluid d-flex justify-content-between">
+                <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © المهندس</span>
+                <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"><a href="#" target="_blank">عبد الله
+                        محمد</a> تصميم وبرمجة</span>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+    <!-- main-panel ends -->
+@endsection

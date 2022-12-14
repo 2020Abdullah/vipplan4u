@@ -71,7 +71,7 @@ Route::get('admin/dashboard', [HomeController::class, 'admin'])->name('admin.das
 Route::resource('admin/package', PackageController::class);
 Route::resource('admin/payment_method', PaymentMethodController::class);
 ////Admin payment
-Route::get('/index',[\App\Http\Controllers\Admin\PaymentAdminController::class,'index'])->name('paymentAdmin.index');
+Route::get('paymentAdmin/index',[\App\Http\Controllers\Admin\PaymentAdminController::class,'index'])->name('paymentAdmin.index');
 Route::delete('/destroy/{id}',[\App\Http\Controllers\Admin\PaymentAdminController::class,'destroy'])->name('paymentAdmin.destroy');
 
 // Route::get('/index',[\App\Http\Controllers\Admin\PaymentAdminController::class,'index'])->name('paymentAdmin.index');
